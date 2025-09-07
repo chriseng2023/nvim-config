@@ -13,10 +13,10 @@ require("globals")
 -- setting options in nvim
 vim.cmd("source " .. vim.fs.joinpath(config_dir, "viml_conf/options.vim"))
 -- various autocommands
--- require("custom-autocmd")
+require("custom-autocmd")
 -- 
 -- all the user-defined mappings
--- require("mappings")
+require("mappings")
 --
 -- all the plugins installed and their configurations
 -- vim.cmd("source " .. vim.fs.joinpath(config_dir, "viml_conf/plugins.vim"))
