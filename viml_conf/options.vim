@@ -1,12 +1,18 @@
 scriptencoding utf-8
 
 " change fillchars for folding, vertical split, end of buffer, and message separator
+" the global option fillchars is to define characters to use for displaying special items
 set fillchars=fold:\ ,foldsep:\ ,foldopen:,foldclose:,vert:\│,eob:\ ,msgsep:‾,diff:╱
 
 " Split window below/right when creating horizontal/vertical windows
+" there are two global options, splitbelow and splitright, the new window is
+" below the current one or is put right of the current one, depend on how you
+" split window. 
 set splitbelow splitright
 
 " avoid the flickering when splitting window horizontal
+" The value of this option determines the scroll behavior when opening,
+"	closing or resizing horizontal splits.
 set splitkeep=screen
 
 " Time in milliseconds to wait for a mapped sequence to complete,
@@ -17,6 +23,7 @@ set updatetime=500  " For CursorHold events
 
 " Clipboard settings, always use clipboard for all delete, yank, change, put
 " operation, see https://stackoverflow.com/q/30691466/6064933
+" the provider feature is new for me, keep watch
 if !empty(provider#clipboard#Executable())
   set clipboard+=unnamedplus
 endif
@@ -35,9 +42,14 @@ set wildignorecase  " ignore file and dir name cases in cmd-completion
 
 " Set up backup directory
 let g:backupdir=expand(stdpath('data') . '/backup//')
+" it looks like assign the value of option g:backupdir to the variable
+" backupdir with the sign '&'
 let &backupdir=g:backupdir
 
 " Skip backup for patterns in option wildignore
+" looks like the same practice as above, but don't know why used '&' ahead
+" option wildignore.
+" Noted, 'let' is for setting variable, and 'set' is use for setting options.
 let &backupskip=&wildignore
 set backup  " create backup for files
 set backupcopy=yes  " copy the original file to backupdir and overwrite it
@@ -57,6 +69,9 @@ set number relativenumber  " Show line number and relative line number
 set ignorecase smartcase
 
 " File and script encoding settings for vim
+" here is what I understand, 'fileencoding' is used write file back to
+" disk; and 'fileencodings' is used for reading file from disk; NOTE Neovim
+" internal is always used utf-8 
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 
@@ -88,6 +103,7 @@ set visualbell noerrorbells  " Do not use visual and errorbells
 set history=500  " The number of command and search history to keep
 
 " Use list mode and customized listchars
+" Don't know what is list mode means
 set list listchars=tab:▸\ ,extends:❯,precedes:❮,nbsp:␣
 
 " Auto-write the file based on some condition
